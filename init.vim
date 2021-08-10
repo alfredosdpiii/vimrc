@@ -38,6 +38,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'ap/vim-css-color'
     Plug 'ThePrimeagen/vim-be-good'
     " Plug 'liuchengxu/vim-which-key'
+    Plug 'kassio/neoterm'
 call plug#end()
 
 
@@ -140,6 +141,8 @@ nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+
+nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
 
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
