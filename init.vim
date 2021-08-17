@@ -39,10 +39,18 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'ThePrimeagen/vim-be-good'
     " Plug 'liuchengxu/vim-which-key'
     Plug 'kassio/neoterm'
+    " post install (yarn install | npm install) then load plugin only for editing supported files
+    Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+    Plug 'sbdchd/neoformat' 
+
 call plug#end()
 
-
-
+autocmd BufWritePre *.js Neoformat
+autocmd FileType javascript setlocal formatprg=prettier\ --single-quote\ --trailing-comma\ es5
+" Use formatprg when available
+let g:neoformat_try_formatprg = 1
 colorscheme shades_of_purple
 
 " basic settings
@@ -143,6 +151,7 @@ xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
+nnoremap gp :silent %!prettier --stdin-filepath %<CR>
 
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
